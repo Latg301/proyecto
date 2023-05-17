@@ -8,6 +8,9 @@ import { Cantante } from 'src/app/model/cantante.model';
   styleUrls: ['./cantantes.component.css']
 })
 export class CantantesComponent implements OnInit {
+  inputNombre: string="";
+  inputEdad: number= 0;
+  inputVivo: boolean=false;
   
     cantantes:Cantante[]= [
       {
@@ -74,6 +77,8 @@ export class CantantesComponent implements OnInit {
 
     ]
   
+
+
   ngOnInit(): void {
     console.log("Hola");
     console.log(this.cantantes[0].nombre);
@@ -115,15 +120,32 @@ export class CantantesComponent implements OnInit {
     let potencia = this.cantantes.map(cantante => Math.pow(cantante.edad ,2));
     console.log(potencia);
 
-
     
-    
-
-
-
-
 
   }
-  
+
+  agregarCantante(){
+    console.log("funciona click");
+    let nuevoCantante: Cantante ={
+      nombre: this.inputNombre,
+      edad: this.inputEdad,
+      vivo: this.inputVivo,
+
+    }
+
+    if (this.inputNombre > ""){
+    if (this.inputEdad > 0)
+    this.cantantes.push(nuevoCantante)}
+    this.reset();
+
+  }
+
+  reset(): void{
+    this.inputNombre="";
+    this.inputEdad= 0;
+    this.inputVivo= false;
+  }
+
+ 
 
 }
